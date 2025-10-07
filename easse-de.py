@@ -22,12 +22,12 @@ preds = []
 refs_sents = []
 for _, row in df_test_de.iterrows():
     tokenizer.src_lang = "de_DE"
-    inp = tokenizer(row["original"], return_tensors="pt").to(device)
+    inp = tokenizer(row["column_of_original_sents"], return_tensors="pt").to(device)
     gen = model.generate(**inp, forced_bos_token_id=tokenizer.lang_code_to_id["de_DE"])
     pred = tokenizer.batch_decode(gen, skip_special_tokens=True)[0]
-    input.append(row["original"])
+    input.append(row["column_of_original_sents"])
     preds.append(pred)
-    refs_sents.append(row["simplification"])
+    refs_sents.append(row["column_of_simple_sents"])
 
 refs = [refs_sents]
 
@@ -62,7 +62,7 @@ for _, row in df_test_de.iterrows():
     gen = model.generate(**inp, forced_bos_token_id=tokenizer.lang_code_to_id["de_DE"])
     pred = tokenizer.batch_decode(gen, skip_special_tokens=True)[0]
     preds.append(pred)
-    refs_sents.append(row["simplification"])
+    refs_sents.append(row["column_of_simple_sents"])
 refs = [refs_sents]
 
 print("Evaluation of ENG+DE->DE test set:")
@@ -94,7 +94,7 @@ for _, row in df_test_de.iterrows():
     gen = model.generate(**inp, forced_bos_token_id=tokenizer.lang_code_to_id["de_DE"])
     pred = tokenizer.batch_decode(gen, skip_special_tokens=True)[0]
     preds.append(pred)
-    refs_sents.append(row["simplification"])
+    refs_sents.append(row["column_of_simple_sents"])
 refs = [refs_sents]
 
 print("Evaluation of DE+ENG->DE test set:")
@@ -123,11 +123,11 @@ preds = []
 refs_sents = []
 for _, row in df_test_de.iterrows():
     tokenizer.src_lang = "de_DE"
-    inp = tokenizer(row["original"], return_tensors="pt").to(device)
+    inp = tokenizer(row["column_of_original_sents"], return_tensors="pt").to(device)
     gen = model.generate(**inp, forced_bos_token_id=tokenizer.lang_code_to_id["de_DE"])
     pred = tokenizer.batch_decode(gen, skip_special_tokens=True)[0]
     preds.append(pred)
-    refs_sents.append(row["simplification"])
+    refs_sents.append(row["column_of_simple_sents"])
 refs = [refs_sents]
 
 print("Evaluation of EdNeG->DE test set:")
@@ -155,11 +155,11 @@ preds = []
 refs_sents = []
 for _, row in df_test_de.iterrows():
     tokenizer.src_lang = "de_DE"
-    inp = tokenizer(row["original"], return_tensors="pt").to(device)
+    inp = tokenizer(row["column_of_original_sents"], return_tensors="pt").to(device)
     gen = model.generate(**inp, forced_bos_token_id=tokenizer.lang_code_to_id["de_DE"])
     pred = tokenizer.batch_decode(gen, skip_special_tokens=True)[0]
     preds.append(pred)
-    refs_sents.append(row["simplification"])
+    refs_sents.append(row["column_of_simple_sents"])
 refs = [refs_sents]
 
 print("Evaluation of DE->DE test set:")
