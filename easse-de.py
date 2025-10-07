@@ -10,10 +10,10 @@ from rouge_score import rouge_scorer
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu" # use GPU if available
-df_test_de = pandas.read_csv("D:\\sha\\Daten_BA\\DEPlain\\E__Sentence-level_Corpus\\DEplain-APA-sent\\test.csv", sep=",")
+df_test_de = pandas.read_csv("path_to_test_data", sep=",")
 
 ############ Evaluation ENG -> DE ############
-model_name_or_path = "D:\\sha\\mbart-simplification-eng-de\\checkpoint-273"
+model_name_or_path = "path_to_last_checkpoint_eng-model"
 tokenizer = MBart50TokenizerFast.from_pretrained(model_name_or_path)
 model = MBartForConditionalGeneration.from_pretrained(model_name_or_path).to(device)
 
@@ -50,7 +50,7 @@ sari_score = corpus_sari(input, preds, refs)
 print("SARI:", sari_score)
 
 ############ Evaluation ENG+DE -> DE ############
-model_name_or_path = "D:\\sha\\mbart-simplification-engde\\checkpoint-273"
+model_name_or_path = "path_to_last_checkpoint_engde-model"
 tokenizer = MBart50TokenizerFast.from_pretrained(model_name_or_path)
 model = MBartForConditionalGeneration.from_pretrained(model_name_or_path).to(device)
 
@@ -82,7 +82,7 @@ sari_score = corpus_sari(input, preds, refs)
 print("SARI:", sari_score)
 
 ############ Evaluation DE+ENG -> DE ############
-model_name_or_path = "D:\\sha\\mbart-simplification-deeng\\checkpoint-273"
+model_name_or_path = "path_to_last_checkpoint_deeng-model"
 tokenizer = MBart50TokenizerFast.from_pretrained(model_name_or_path)
 model = MBartForConditionalGeneration.from_pretrained(model_name_or_path).to(device)
 
@@ -115,7 +115,7 @@ print("SARI:", sari_score)
 
 ############ Evaluation EdNeG -> DE ############
 
-model_name_or_path = "D:\\sha\\mbart-simplification-EdNeG\\checkpoint-273"
+model_name_or_path = "path_to_last_checkpoint_edneg-model"
 tokenizer = MBart50TokenizerFast.from_pretrained(model_name_or_path)
 model = MBartForConditionalGeneration.from_pretrained(model_name_or_path).to(device)
 
@@ -147,7 +147,7 @@ sari_score = corpus_sari(input, preds, refs)
 print("SARI:", sari_score)
 
 ############ Evaluation DE -> DE ############
-model_name_or_path = "D:\\sha\\mbart-simplification-de-de\\checkpoint-273"
+model_name_or_path = "path_to_last_checkpoint_de-model"
 tokenizer = MBart50TokenizerFast.from_pretrained(model_name_or_path)
 model = MBartForConditionalGeneration.from_pretrained(model_name_or_path).to(device)
 
